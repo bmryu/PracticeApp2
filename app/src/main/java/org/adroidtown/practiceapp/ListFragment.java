@@ -195,10 +195,10 @@ class ListAdapter extends BaseAdapter {
             itemHolder = (ItemHolder) convertView.getTag(); //만들어둔 뷰홀더를 불러온다
         }
 
-
-        itemHolder.imageView.setImageResource(items.get(position).getResID());
-        itemHolder.nameTV.setText(items.get(position).getName());
-        itemHolder.contentTV.setText(items.get(position).getName());
+//
+//        itemHolder.imageView.setImageResource(items.get(position).getResID());
+//        itemHolder.nameTV.setText(items.get(position).getName());
+//        itemHolder.contentTV.setText(items.get(position).getName());
 
         return convertView;
     }

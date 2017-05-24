@@ -1,5 +1,10 @@
 package org.adroidtown.practiceapp;
 
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,15 +12,22 @@ import java.util.Map;
  * Created by bomeeryu_c on 2017. 5. 22..
  */
 
-public class FirebaseItem {
+public class FirebaseItem extends RecyclerView.ViewHolder {
     public String content;
     public String path;
 
-    public FirebaseItem(){
+    public FirebaseItem(View itemView, String content) {
+        super(itemView);
+        this.content = content;
 
     }
 
-    public FirebaseItem(String content, String path){
+    public FirebaseItem(View itemView) {
+        super(itemView);
+    }
+
+    public FirebaseItem(@Nullable View itemView, String content, String path) {
+        super(itemView);
         this.content = content;
         this.path = path;
     }
@@ -25,7 +37,8 @@ public class FirebaseItem {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        TextView textView = (TextView)itemView.findViewById(R.id.textView);
+        textView.setText(content);
     }
 
     public String getPath() {

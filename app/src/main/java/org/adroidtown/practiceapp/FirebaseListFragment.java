@@ -4,20 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 /**
  * Created by bomeeryu_c on 2017. 5. 22..
@@ -44,9 +42,9 @@ public class FirebaseListFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_firebase_listview, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://practiceapp-ce6dc.firebaseio.com/post");
-        final ListView listView = (ListView)rootView.findViewById(R.id.listView);
+//        final ListView listView = (ListView)rootView.findViewById(R.id.listView);
 
-
+            RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.listView);
 
         writeBtn = (Button)rootView.findViewById(R.id.writeBtn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +83,7 @@ public class FirebaseListFragment extends Fragment{
         });
 
 
-
+/*
        firebaseListAdapter = new FirebaseListAdapter(
                 getActivity(),
              Object.class,
@@ -104,9 +102,7 @@ public class FirebaseListFragment extends Fragment{
              //   Glide.with(getActivity()).load(Uri.parse(dataImagePath)).override(100,100).into(imageView);
             }
         };
-
-        listView.setAdapter(firebaseListAdapter);
-
+*/
 
 
         return rootView;

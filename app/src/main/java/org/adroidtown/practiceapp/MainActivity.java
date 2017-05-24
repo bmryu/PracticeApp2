@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void writeNewPost(String content, String path) {
         key = mDatabase.child("post").push().getKey();
-        FirebaseItem firebaseItem = new FirebaseItem(content,path);
+        FirebaseItem firebaseItem = new FirebaseItem(null,content,path);
         Map<String, String> postValues = firebaseItem.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(key, postValues);

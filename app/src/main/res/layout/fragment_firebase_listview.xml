@@ -34,11 +34,11 @@
         android:layout_height="0dp"
         android:layout_below="@+id/first"
         android:layout_above="@+id/bottom">
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 <org.adroidtown.practiceapp.BottomButton

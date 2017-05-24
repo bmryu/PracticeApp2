@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -15,7 +14,6 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
     LoginFragment1 loginFragment1;
     LoginFragment2 loginFragment2;
-    FragmentManager fm;
     Context context;
      //4-2 4-1에 가져온 리스너가 메모리에 로딩됨
 
@@ -26,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         context = this;
         loginFragment1 = new LoginFragment1();
         loginFragment2 = new LoginFragment2();
-       // fm = getSupportFragmentManager();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, loginFragment1).commit();
 
@@ -55,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private void onFragmentChanged(boolean goToNext) {
         if (goToNext == true) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, loginFragment2).commit();
-          //  Toast.makeText(getApplicationContext(), "onFragmentChanged 실행", Toast.LENGTH_LONG).show();
+
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, loginFragment1).commit();
             Toast.makeText(getApplicationContext(), "뒤로가기", Toast.LENGTH_LONG).show();
@@ -64,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToMainActivity(boolean check) {
         if (check) {
-          //  Toast.makeText(this, "gotoMainActivity들어옴", Toast.LENGTH_LONG).show();
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
