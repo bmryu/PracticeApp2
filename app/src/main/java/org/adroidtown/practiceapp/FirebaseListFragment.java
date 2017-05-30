@@ -21,6 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 import static org.adroidtown.practiceapp.R.id.listView;
 
 /**
@@ -29,7 +33,10 @@ import static org.adroidtown.practiceapp.R.id.listView;
 
 public class FirebaseListFragment extends Fragment{
     private DatabaseReference mDatabase;
+    private Unbinder unbinder;
+    @BindView(R.id.writeBtn)
     Button writeBtn;
+
     OnPostListener pListener;
     FirebaseRecyclerAdapter<FirebaseItem, PostViewHolder> mPostAdapter;
     public interface   OnPostListener {
@@ -43,6 +50,7 @@ public class FirebaseListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_firebase_listview, container, false);
+        ButterKnife.bind(this, rootView);
         mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://practiceapp-ce6dc.firebaseio.com/post");
        // final ListView listView = (ListView)rootView.findViewById(R.id.listView);
 
@@ -50,8 +58,6 @@ public class FirebaseListFragment extends Fragment{
         mPostRV.setLayoutManager(new LinearLayoutManager(getContext()));
         setupAdapter();
         mPostRV.setAdapter(mPostAdapter);
-
-        writeBtn = (Button)rootView.findViewById(R.id.writeBtn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +129,12 @@ public class FirebaseListFragment extends Fragment{
 
         return rootView;
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void setupAdapter() {
@@ -234,13 +246,16 @@ public class FirebaseListFragment extends Fragment{
 
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.recycleContent)
         TextView textView;
+        @BindView(R.id.recycleImage)
         ImageView imageView;
 
         public PostViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView)itemView.findViewById(R.id.recycleContent);
-            imageView = (ImageView)itemView.findViewById(R.id.recycleImage);
+            ButterKnife.bind(this,itemView);
+//            textView = (TextView)itemView.findViewById(R.id.recycleContent);
+//            imageView = (ImageView)itemView.findViewById(R.id.recycleImage);
         }
 
     }

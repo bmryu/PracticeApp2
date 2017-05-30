@@ -10,14 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by bomeeryu_c on 2017. 5. 15..
  */
 
 public class PostImageFragment extends Fragment {
+    @BindView(R.id.imageView)
     ImageView imageView;
+    @BindView(R.id.editText)
     EditText editText;
+    @BindView(R.id.postBtn)
     Button completeButton;
+    private Unbinder unbinder;
     OnImageClickListener imageClickListener;
     OnPostBtnListener postBtnListener;
     public interface OnImageClickListener {
@@ -33,10 +41,8 @@ public class PostImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_post_image,container,false);
+        ButterKnife.bind(this,rootView);
 
-        imageView = (ImageView)rootView.findViewById(R.id.imageView);
-        editText = (EditText)rootView.findViewById(R.id.editText);
-        completeButton = (Button)rootView.findViewById(R.id.postBtn);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +59,11 @@ public class PostImageFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

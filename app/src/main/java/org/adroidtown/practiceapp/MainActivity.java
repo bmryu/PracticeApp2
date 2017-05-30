@@ -27,9 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
     FirebaseListFragment firebaseListFragment;
+
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     BroadcastReceiver receiver;
     Context mContext;
     PostImageFragment postImageFragment;
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     static int REQUEST_PHOTO_ALBUM = 200;
     static String SAMPLEIMG = "picture.png";
     Boolean isFromAlbum;
+
     Bitmap image;
     String imagePath;
     Uri uriAlbum;
@@ -48,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_new);
-        mContext = this;
+        ButterKnife.bind(this);
+
+           mContext = this;
 
         if(!FirebaseApp.getApps(this).isEmpty()){
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         }
         mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://practiceapp-ce6dc.firebaseio.com/");
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         firebaseListFragment = new FirebaseListFragment();
