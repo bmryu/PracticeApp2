@@ -117,10 +117,6 @@ public class FirebaseListFragment extends Fragment {
 
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_firebase_listview, container, false);
         ButterKnife.bind(this, rootView);
-//        bottomButton = new BottomButton(getContext());
-//        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        lp.addRule(RelativeLayout.BELOW,R.id.lList);
-//        rootView.addView(bottomButton,lp);
         Log.d("lifeCycle","onCreateView : "+bottomButton);
         mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://practiceapp-ce6dc.firebaseio.com/post");
         mPostRV.setLayoutManager(new LinearLayoutManager(getContext()));
